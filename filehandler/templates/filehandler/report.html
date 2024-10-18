@@ -10,9 +10,9 @@
     </tr>
     {% for row in summary %}
     <tr>
-        <td>{{ row.Cust State }}</td>
-        <td>{{ row.Cust Pin }}</td>
-        <td>{{ row.DPD }}</td>
+        <td>{{ row.Cust_State }}</td>  <!-- Updated to use underscore -->
+        <td>{{ row.Cust_Pin }}</td>    <!-- Updated to use underscore -->
+        <td>{{ row.DPD }}</td>         <!-- Assuming 'DPD' has no spaces -->
     </tr>
     {% endfor %}
 </table>

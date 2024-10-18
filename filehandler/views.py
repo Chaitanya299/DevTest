@@ -16,7 +16,13 @@ def upload_file(request):
             else:
                 return HttpResponse('File format not supported.')
 
-            summary = df.groupby(['Cust State', 'Cust Pin']).agg({'DPD': 'sum'}).reset_index()
+            # Clean the column names to replace spaces with underscores
+            df.columns = df.columns.str.replace(' ', '_')
+
+            # Perform the aggregation
+            summary = df.groupby(['Cust_State', 'Cust_Pin']).agg({'DPD': 'sum'}).reset_index()
+
+            # Pass the cleaned data to the template
             return render(request, 'filehandler/report.html', {'summary': summary})
 
     else:
