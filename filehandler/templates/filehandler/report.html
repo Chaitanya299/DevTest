@@ -2,6 +2,8 @@
 {% block title %}Summary Report{% endblock %}
 {% block content %}
 <h2>Summary Report</h2>
+
+{% if summary %}
 <table border="1">
     <tr>
         <th>Cust State</th>
@@ -10,10 +12,14 @@
     </tr>
     {% for row in summary %}
     <tr>
-        <td>{{ row.Cust_State }}</td>  <!-- Updated to use underscore -->
-        <td>{{ row.Cust_Pin }}</td>    <!-- Updated to use underscore -->
-        <td>{{ row.DPD }}</td>         <!-- Assuming 'DPD' has no spaces -->
+        <td>{{ row.Cust_State }}</td>
+        <td>{{ row.Cust_Pin }}</td>
+        <td>{{ row.DPD }}</td>
     </tr>
     {% endfor %}
 </table>
+{% else %}
+<p>No data available to display.</p>
+{% endif %}
+
 {% endblock %}

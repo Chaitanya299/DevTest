@@ -22,8 +22,11 @@ def upload_file(request):
             # Perform the aggregation
             summary = df.groupby(['Cust_State', 'Cust_Pin']).agg({'DPD': 'sum'}).reset_index()
 
+            # Convert the DataFrame to a list of dictionaries
+            summary_data = summary.to_dict(orient='records')
+
             # Pass the cleaned data to the template
-            return render(request, 'filehandler/report.html', {'summary': summary})
+            return render(request, 'filehandler/report.html', {'summary': summary_data})
 
     else:
         form = UploadFileForm()
